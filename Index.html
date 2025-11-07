@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZimNews - Truth. Innovation. National Pride.</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'zim-gold': '#D4AF37',
+                        'zim-blue': '#1E40AF',
+                        'zim-green': '#047857',
+                        'zim-red': '#DC2626',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, #1E40AF 0%, #047857 100%);
+        }
+
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .premium-badge {
+            background: linear-gradient(135deg, #D4AF37 0%, #F59E0B 100%);
+        }
+
+        .article-image {
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .podcast-player {
+            background: linear-gradient(135deg, rgba(30, 64, 175, 0.05) 0%, rgba(4, 120, 87, 0.05) 100%);
+        }
+
+        .social-card {
+            border-left: 4px solid #D4AF37;
+        }
+
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #D4AF37;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .audio-wave {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+            height: 24px;
+        }
+
+        .audio-wave span {
+            width: 3px;
+            background: #D4AF37;
+            animation: wave 1s ease-in-out infinite;
+        }
+
+        .audio-wave span:nth-child(1) { animation-delay: 0s; }
+        .audio-wave span:nth-child(2) { animation-delay: 0.1s; }
+        .audio-wave span:nth-child(3) { animation-delay: 0.2s; }
+        .audio-wave span:nth-child(4) { animation-delay: 0.3s; }
+        .audio-wave span:nth-child(5) { animation-delay: 0.4s; }
+
+        @keyframes wave {
+            0%, 100% { height: 8px; }
+            50% { height: 24px; }
+        }
+
+        .dark .hero-gradient {
+            background: linear-gradient(135deg, #1E3A8A 0%, #065F46 100%);
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        .dark ::-webkit-scrollbar-track {
+            background: #1f2937;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #D4AF37;
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #B8941F;
+        }
+        
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .animate-slide-in {
+            animation: slideIn 0.3s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
+    
+    <!-- Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-lg sticky top-0 z-50 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-gradient-to-br from-zim-gold to-yellow-600 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-dove text-white text-xl"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold text-zim-blue dark:text-zim-gold">ZimNews</h1>
+                        <p class="text-xs text-gray-500 dark:text-gray-400">Voice of Modern Zimbabwe</p>
+                    </div>
+                </div>
+                
+                <div class="hidden md:flex space-x-6">
+                    <a href="#home" class="nav-link active text-gray-700 dark:text-gray-300 hover:text-zim-blue dark:hover:text-zim-gold font-medium">Home</a>
+                    <a href="#epaper" class="nav-link text-gray-700 dark:text-gray-300 hover:text-zim-blue dark:hover:text-zim-gold font-medium">E-Paper</a>
+                    <a href="#podcasts" class="nav-link text-gray-700 dark:text-gray-300 hover:text-zim-blue dark:hover:text-zim-gold font-medium">Podcasts</a>
+                    <a href="#social" class="nav-link text-gray-700 dark:text-gray-300 hover:text-zim-blue dark:hover:text-zim-gold font-medium">Social Hub</a>
+                </div>
+
+                <div class="flex items-center space-x-3">
+                    <button id="darkModeToggle" class="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+                        <i class="fas fa-moon dark:hidden"></i>
+                        <i class="fas fa-sun hidden dark:inline"></i>
+                    </button>
+                    <button class="md:hidden p-2 rounded-lg bg-gray-100 dark:bg-gray-700" id="mobileMenuBtn">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white dark:bg-gray-800 border-t dark:border-gray-700">
+            <div class="px-4 py-3 space-y-2">
+                <a href="#home" class="block py-2 text-gray-700 dark:text-gray-300 hover:text-zim-blue dark:hover:text-zim-gold">Home</a>
+                <a href="#epaper" class="block py-2 text-gray-700 dark:text-gray-300 hover:text-zim-blue dark:hover:text-zim-gold">E-Paper</a>
+                <a href="#podcasts" class="block py-2 text-gray-700 dark:text-gray-300 hover:text-zim-blue dark:hover:text-zim-gold">Podcasts</a>
+                <a href="#social" class="block py-2 text-gray-700 dark:text-gray-300 hover:text-zim-blue dark:hover:text-zim-gold">Social Hub</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-gradient py-20 px-4">
+        <div class="max-w-7xl mx-auto text-center text-white">
+            <div class="mb-6">
+                <div class="inline-block p-4 bg-white/10 backdrop-blur-sm rounded-2xl">
+                    <i class="fas fa-dove text-6xl text-zim-gold"></i>
+                </div>
+            </div>
+            <h1 class="text-4xl md:text-6xl font-bold mb-4">Truth. Innovation. National Pride.</h1>
+            <p class="text-xl md:text-2xl mb-8 text-blue-100">A New Era for Zimbabwe's News</p>
+            <p class="text-lg md:text-xl mb-12 max-w-3xl mx-auto text-blue-50">
+                Empowering Zimbabwe's narrative through digital innovation. Bridging traditional journalism with modern storytelling.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button onclick="scrollToSection('epaper')" class="px-8 py-4 bg-zim-gold hover:bg-yellow-600 text-gray-900 font-semibold rounded-lg transition-all transform hover:scale-105 shadow-lg">
+                    <i class="fas fa-newspaper mr-2"></i>Read E-Paper
+                </button>
+                <button onclick="scrollToSection('podcasts')" class="px-8 py-4 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white font-semibold rounded-lg transition-all border-2 border-white/50">
+                    <i class="fas fa-podcast mr-2"></i>Listen to Podcasts
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission & Vision -->
+    <section class="py-16 px-4 bg-white dark:bg-gray-800">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="p-8 bg-gradient-to-br from-blue-50 to-green-50 dark:from-gray-700 dark:to-gray-600 rounded-xl">
+                    <div class="w-12 h-12 bg-zim-blue rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-eye text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-zim-blue dark:text-zim-gold">Our Vision</h3>
+                    <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+                        To become Zimbabwe's most trusted, innovative, and influential multimedia news source—driving informed public discourse, supporting national development, and amplifying Zimbabwean voices on the global stage.
+                    </p>
+                </div>
+                <div class="p-8 bg-gradient-to-br from-yellow-50 to-orange-50 dark:from-gray-700 dark:to-gray-600 rounded-xl">
+                    <div class="w-12 h-12 bg-zim-gold rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-bullseye text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-zim-blue dark:text-zim-gold">Our Mission</h3>
+                    <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+                        Delivering authentic, accurate, and meaningful journalism across digital, print, and broadcast platforms. We reflect real Zimbabwean experiences through ethical reporting and digital innovation.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Values -->
+    <section class="py-16 px-4 bg-gray-50 dark:bg-gray-900">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-zim-blue dark:text-zim-gold">Our Core Values</h2>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg card-hover">
+                    <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-shield-alt text-zim-blue dark:text-zim-gold text-xl"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-2">Integrity</h4>
+                    <p class="text-gray-600 dark:text-gray-400">Upholding truth, honesty, and transparency in all reporting.</p>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg card-hover">
+                    <div class="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-flag text-zim-green dark:text-zim-gold text-xl"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-2">Patriotism</h4>
+                    <p class="text-gray-600 dark:text-gray-400">Promoting unity, development, and cultural heritage preservation.</p>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg card-hover">
+                    <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-balance-scale text-purple-600 dark:text-zim-gold text-xl"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-2">Objectivity</h4>
+                    <p class="text-gray-600 dark:text-gray-400">Ensuring fair, balanced, and fact-based coverage.</p>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg card-hover">
+                    <div class="w-12 h-12 bg-yellow-100 dark:bg-yellow-900 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-lightbulb text-zim-gold text-xl"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-2">Innovation</h4>
+                    <p class="text-gray-600 dark:text-gray-400">Harnessing technology for engaging, accessible journalism.</p>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg card-hover">
+                    <div class="w-12 h-12 bg-red-100 dark:bg-red-900 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-hands-helping text-zim-red dark:text-zim-gold text-xl"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-2">Accountability</h4>
+                    <p class="text-gray-600 dark:text-gray-400">Maintaining responsibility to audiences, laws, and ethics.</p>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg card-hover">
+                    <div class="w-12 h-12 bg-indigo-100 dark:bg-indigo-900 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-users text-indigo-600 dark:text-zim-gold text-xl"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-2">Inclusivity</h4>
+                    <p class="text-gray-600 dark:text-gray-400">Representing voices from every region and background.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- E-Paper Section -->
+    <section id="epaper" class="py-16 px-4 bg-white dark:bg-gray-800">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex justify-between items-center mb-8">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-zim-blue dark:text-zim-gold mb-2">E-Paper</h2>
+                    <p class="text-gray-600 dark:text-gray-400">Latest news and in-depth coverage</p>
+                </div>
+                <div class="flex gap-2">
+                    <button onclick="filterArticles('all')" class="filter-btn px-4 py-2 text-base rounded-lg bg-zim-blue text-white transition-all">All</button>
+                    <button onclick="filterArticles('national')" class="filter-btn px-4 py-2 text-base rounded-lg bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 transition-all">National</button>
+                    <button onclick="filterArticles('economy')" class="filter-btn px-4 py-2 text-base rounded-lg bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 transition-all">Economy</button>
+                    <button onclick="filterArticles('culture')" class="filter-btn px-4 py-2 text-base rounded-lg bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 transition-all">Culture</button>
+                </div>
+            </div>
+
+            <div id="articlesGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Articles will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Article Reader Modal -->
+    <div id="articleModal" class="hidden fixed inset-0 bg-black bg-opacity-75 z-50 flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-gray-800 rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="sticky top-0 bg-white dark:bg-gray-800 border-b dark:border-gray-700 p-4 flex justify-between items-center">
+                <h3 id="modalTitle" class="text-2xl font-bold text-zim-blue dark:text-zim-gold"></h3>
+                <button onclick="closeArticle()" class="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <div id="modalContent" class="p-6">
+                <!-- Article content will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Podcasts Section -->
+    <section id="podcasts" class="py-16 px-4 bg-gray-50 dark:bg-gray-900">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-zim-blue dark:text-zim-gold">ZimNews Podcasts</h2>
+            <p class="text-center text-gray-600 dark:text-gray-400 mb-12">Listen to stories that matter</p>
+
+            <!-- Featured Podcast Player -->
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl p-6 md:p-8 mb-8 podcast-player">
+                <div class="flex flex-col md:flex-row gap-6">
+                    <div class="md:w-48 h-48 bg-gradient-to-br from-zim-blue to-zim-green rounded-lg flex items-center justify-center flex-shrink-0">
+                        <i class="fas fa-microphone-alt text-white text-6xl"></i>
+                    </div>
+                    <div class="flex-1">
+                        <div class="mb-4">
+                            <span class="inline-block px-3 py-1 bg-zim-gold text-gray-900 text-sm font-semibold rounded-full mb-2">NOW PLAYING</span>
+                            <h3 id="currentPodcastTitle" class="text-2xl font-bold mb-2">Development Dialogues: Zimbabwe's Digital Future</h3>
+                            <p id="currentPodcastDescription" class="text-gray-600 dark:text-gray-400">Expert discussions on technology, entrepreneurship, and innovation driving Zimbabwe forward.</p>
+                        </div>
+                        
+                        <!-- Audio Player -->
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-4">
+                                <button id="playPauseBtn" class="w-12 h-12 bg-zim-blue hover:bg-blue-800 text-white rounded-full flex items-center justify-center transition-all transform hover:scale-105">
+                                    <i class="fas fa-play"></i>
+                                </button>
+                                <div class="flex-1">
+                                    <div class="bg-gray-200 dark:bg-gray-700 rounded-full h-2 overflow-hidden">
+                                        <div id="progressBar" class="bg-zim-gold h-full w-0 transition-all"></div>
+                                    </div>
+                                    <div class="flex justify-between text-sm text-gray-500 dark:text-gray-400 mt-1">
+                                        <span id="currentTime">0:00</span>
+                                        <span id="duration">24:35</span>
+                                    </div>
+                                </div>
+                                <button class="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg">
+                                    <i class="fas fa-volume-up text-gray-600 dark:text-gray-400"></i>
+                                </button>
+                            </div>
+                            
+                            <div id="audioWave" class="audio-wave hidden justify-center">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Podcast Episodes Grid -->
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6" id="podcastsGrid">
+                <!-- Podcasts will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Media Dashboard -->
+    <section id="social" class="py-16 px-4 bg-white dark:bg-gray-800">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-zim-blue dark:text-zim-gold">Social Media Hub</h2>
+            <p class="text-center text-gray-600 dark:text-gray-400 mb-12">Manage and track our digital presence</p>
+
+            <!-- Social Stats -->
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                <div class="bg-gradient-to-br from-blue-500 to-blue-600 text-white p-6 rounded-xl shadow-lg">
+                    <div class="flex items-center justify-between mb-2">
+                        <i class="fab fa-twitter text-3xl"></i>
+                        <span class="text-sm font-semibold bg-white/20 px-2 py-1 rounded">+12%</span>
+                    </div>
+                    <p class="text-blue-100 text-sm mb-1">Twitter/X</p>
+                    <p class="text-3xl font-bold">8,542</p>
+                    <p class="text-blue-100 text-sm">Followers</p>
+                </div>
+                <div class="bg-gradient-to-br from-blue-600 to-blue-700 text-white p-6 rounded-xl shadow-lg">
+                    <div class="flex items-center justify-between mb-2">
+                        <i class="fab fa-facebook text-3xl"></i>
+                        <span class="text-sm font-semibold bg-white/20 px-2 py-1 rounded">+8%</span>
+                    </div>
+                    <p class="text-blue-100 text-sm mb-1">Facebook</p>
+                    <p class="text-3xl font-bold">12,328</p>
+                    <p class="text-blue-100 text-sm">Followers</p>
+                </div>
+                <div class="bg-gradient-to-br from-pink-500 to-rose-600 text-white p-6 rounded-xl shadow-lg">
+                    <div class="flex items-center justify-between mb-2">
+                        <i class="fab fa-instagram text-3xl"></i>
+                        <span class="text-sm font-semibold bg-white/20 px-2 py-1 rounded">+18%</span>
+                    </div>
+                    <p class="text-pink-100 text-sm mb-1">Instagram</p>
+                    <p class="text-3xl font-bold">6,891</p>
+                    <p class="text-pink-100 text-sm">Followers</p>
+                </div>
+                <div class="bg-gradient-to-br from-red-500 to-red-600 text-white p-6 rounded-xl shadow-lg">
+                    <div class="flex items-center justify-between mb-2">
+                        <i class="fab fa-youtube text-3xl"></i>
+                        <span class="text-sm font-semibold bg-white/20 px-2 py-1 rounded">+15%</span>
+                    </div>
+                    <p class="text-red-100 text-sm mb-1">YouTube</p>
+                    <p class="text-3xl font-bold">4,267</p>
+                    <p class="text-red-100 text-sm">Subscribers</p>
+                </div>
+            </div>
+
+            <!-- Content Calendar / Scheduled Posts -->
+            <div class="bg-gray-50 dark:bg-gray-900 rounded-xl p-6 mb-8">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-2xl font-bold">Scheduled Posts</h3>
+                    <button onclick="showPostCreator()" class="px-4 py-2 bg-zim-gold hover:bg-yellow-600 text-gray-900 font-semibold rounded-lg transition-all">
+                        <i class="fas fa-plus mr-2"></i>Create Post
+                    </button>
+                </div>
+                <div id="scheduledPosts" class="space-y-4">
+                    <!-- Scheduled posts will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Analytics Summary -->
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border dark:border-gray-700">
+                    <h3 class="text-xl font-bold mb-4 flex items-center">
+                        <i class="fas fa-chart-line text-zim-gold mr-2"></i>
+                        Engagement This Week
+                    </h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-600 dark:text-gray-400">Total Impressions</span>
+                            <span class="font-bold text-lg">45,328</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-600 dark:text-gray-400">Engagements</span>
+                            <span class="font-bold text-lg">3,842</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-600 dark:text-gray-400">Shares</span>
+                            <span class="font-bold text-lg">892</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-600 dark:text-gray-400">Comments</span>
+                            <span class="font-bold text-lg">421</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border dark:border-gray-700">
+                    <h3 class="text-xl font-bold mb-4 flex items-center">
+                        <i class="fas fa-fire text-zim-red mr-2"></i>
+                        Top Performing Content
+                    </h3>
+                    <div class="space-y-3">
+                        <div class="p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                            <p class="font-semibold text-sm mb-1">Infrastructure Development Update</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">2,341 engagements</p>
+                        </div>
+                        <div class="p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                            <p class="font-semibold text-sm mb-1">Small Business Success Story</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">1,928 engagements</p>
+                        </div>
+                        <div class="p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                            <p class="font-semibold text-sm mb-1">Youth Innovation Spotlight</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">1,573 engagements</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Post Creator Modal -->
+    <div id="postCreatorModal" class="hidden fixed inset-0 bg-black bg-opacity-75 z-50 flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-gray-800 rounded-xl max-w-2xl w-full">
+            <div class="border-b dark:border-gray-700 p-4 flex justify-between items-center">
+                <h3 class="text-2xl font-bold text-zim-blue dark:text-zim-gold">Create Social Post</h3>
+                <button onclick="closePostCreator()" class="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <div class="p-6">
+                <div class="mb-4">
+                    <label class="block text-sm font-semibold mb-2">Platform</label>
+                    <div class="flex gap-2">
+                        <button class="platform-btn px-4 py-2 text-base rounded-lg bg-blue-500 text-white transition-all" data-platform="twitter">
+                            <i class="fab fa-twitter mr-2"></i>Twitter
+                        </button>
+                        <button class="platform-btn px-4 py-2 text-base rounded-lg bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 transition-all" data-platform="facebook">
+                            <i class="fab fa-facebook mr-2"></i>Facebook
+                        </button>
+                        <button class="platform-btn px-4 py-2 text-base rounded-lg bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 transition-all" data-platform="instagram">
+                            <i class="fab fa-instagram mr-2"></i>Instagram
+                        </button>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-semibold mb-2">Post Content</label>
+                    <textarea id="postContent" rows="6" class="w-full px-4 py-3 text-base border dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 focus:ring-2 focus:ring-zim-gold outline-none" placeholder="What's happening in Zimbabwe today?"></textarea>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mt-1"><span id="charCount">0</span>/280 characters</p>
+                </div>
+                <div class="mb-6">
+                    <label class="block text-sm font-semibold mb-2">Schedule (Optional)</label>
+                    <input type="datetime-local" id="scheduleTime" class="w-full px-4 py-3 text-base border dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 focus:ring-2 focus:ring-zim-gold outline-none">
+                </div>
+                <div class="flex gap-3">
+                    <button onclick="schedulePost()" class="flex-1 px-6 py-3 bg-zim-gold hover:bg-yellow-600 text-gray-900 font-semibold rounded-lg transition-all">
+                        <i class="fas fa-clock mr-2"></i>Schedule Post
+                    </button>
+                    <button onclick="closePostCreator()" class="px-6 py-3 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 font-semibold rounded-lg transition-all">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-10 h-10 bg-gradient-to-br from-zim-gold to-yellow-600 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-dove text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">ZimNews</h3>
+                    </div>
+                    <p class="text-gray-400 text-sm">Empowering Zimbabwe's narrative through digital innovation.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#home" class="hover:text-zim-gold transition-colors">Home</a></li>
+                        <li><a href="#epaper" class="hover:text-zim-gold transition-colors">E-Paper</a></li>
+                        <li><a href="#podcasts" class="hover:text-zim-gold transition-colors">Podcasts</a></li>
+                        <li><a href="#social" class="hover:text-zim-gold transition-colors">Social Hub</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Contact</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><i class="fas fa-envelope mr-2 text-zim-gold"></i>info@zimnews.co.zw</li>
+                        <li><i class="fas fa-phone mr-2 text-zim-gold"></i>+263 XXX XXXX</li>
+                        <li><i class="fas fa-map-marker-alt mr-2 text-zim-gold"></i>Harare, Zimbabwe</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Follow Us</h4>
+                    <div class="flex gap-3">
+                        <a href="#" class="w-10 h-10 bg-gray-800 hover:bg-zim-gold rounded-lg flex items-center justify-center transition-all">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 hover:bg-zim-gold rounded-lg flex items-center justify-center transition-all">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 hover:bg-zim-gold rounded-lg flex items-center justify-center transition-all">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 hover:bg-zim-gold rounded-lg flex items-center justify-center transition-all">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-sm text-gray-400">
+                <p>&copy; 2024 ZimNews Media Company. All rights reserved. | Registered with ZMC</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Dark mode functionality
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+        
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+            if (event.matches) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        });
+
+        document.getElementById('darkModeToggle').addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+        });
+
+        // Mobile menu toggle
+        document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        });
+
+        // Smooth scrolling
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                if (targetId) {
+                    scrollToSection(targetId);
+                }
+                // Update active nav link
+                document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+                this.classList.add('active');
+                // Close mobile menu
+                document.getElementById('mobileMenu').classList.add('hidden');
+            });
+        });
+
+        // Sample articles data
+        const articles = [
+            {
+                id: 1,
+                title: "Zimbabwe's Digital Economy Growing at Record Pace",
+                category: "economy",
+                image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400",
+                excerpt: "New report shows 45% growth in tech sector employment, signaling transformation of national economy.",
+                premium: false,
+                date: "2024-01-15",
+                author: "Tendai Moyo",
+                content: "Zimbabwe's digital economy is experiencing unprecedented growth, with the technology sector adding thousands of new jobs and contributing significantly to GDP. Industry experts attribute this growth to increased internet penetration, mobile money adoption, and government support for innovation hubs across major cities. The Digital Economy Council reported that tech startups raised over $50 million in funding last year, representing a 200% increase from the previous year. Major cities like Harare and Bulawayo have seen the emergence of innovation hubs providing resources, mentorship, and networking opportunities for aspiring entrepreneurs."
+            },
+            {
+                id: 2,
+                title: "New Infrastructure Projects Transform Rural Communities",
+                category: "national",
+                image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=400",
+                excerpt: "Government announces completion of 500km rural road network, connecting previously isolated villages.",
+                premium: false,
+                date: "2024-01-14",
+                author: "Rudo Chikwava",
+                content: "In a landmark achievement for rural development, the Ministry of Transport has announced the successful completion of a 500-kilometer road network connecting remote villages across three provinces. The project, which took 18 months to complete, has already shown remarkable impacts on local economies. Farmers can now transport their produce to markets more efficiently, reducing spoilage and increasing income. Healthcare access has improved dramatically, with ambulances able to reach previously isolated communities. Education has also benefited, with students now able to attend schools that were previously too far to access daily."
+            },
+            {
+                id: 3,
+                title: "Young Entrepreneur Revolutionizes Sustainable Fashion",
+                category: "culture",
+                image: "https://images.unsplash.com/photo-1558769132-cb1aea1f0e77?w=400",
+                excerpt: "22-year-old designer creates international buzz with eco-friendly clothing line using traditional methods.",
+                premium: true,
+                date: "2024-01-13",
+                author: "Nyasha Mlambo",
+                content: "Meet Kudzai Makoni, the 22-year-old fashion entrepreneur who is taking the international fashion scene by storm with her unique blend of traditional Zimbabwean textile techniques and modern sustainable practices. Her brand, 'Roots & Wings,' has gained attention from fashion magazines worldwide for its innovative approach to eco-friendly fashion. Using organic cotton grown by local farmers and natural dyes derived from indigenous plants, Makoni creates stunning pieces that celebrate Zimbabwean heritage while addressing environmental concerns. Her success story demonstrates the potential of combining cultural preservation with contemporary entrepreneurship."
+            },
+            {
+                id: 4,
+                title: "Healthcare Innovation: Telemedicine Reaches 10,000 Patients",
+                category: "national",
+                image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400",
+                excerpt: "Mobile health platform connects rural patients with specialist doctors via smartphone technology.",
+                premium: false,
+                date: "2024-01-12",
+                author: "Dr. Farai Ndlovu",
+                content: "The national telemedicine initiative has reached a major milestone, serving over 10,000 patients in its first six months of operation. The platform, accessible via basic smartphones, connects patients in rural areas with specialist doctors in urban hospitals. Patients can receive consultations, diagnoses, and prescription renewals without traveling long distances. The Ministry of Health reports that the initiative has significantly reduced wait times and improved health outcomes, particularly for chronic conditions requiring regular monitoring. The success has inspired plans to expand the service to include mental health support and maternal care."
+            },
+            {
+                id: 5,
+                title: "Agricultural Export Success: Zimbabwe Coffee Wins International Award",
+                category: "economy",
+                image: "https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=400",
+                excerpt: "Local coffee growers receive prestigious recognition at global competition, opening new export markets.",
+                premium: true,
+                date: "2024-01-11",
+                author: "Simba Mataranyika",
+                content: "Zimbabwean coffee producers have achieved international recognition, with the Honde Valley Coffee Cooperative winning gold at the International Coffee Excellence Awards. This achievement marks a turning point for Zimbabwe's specialty coffee industry, which has been building quality and capacity over the past decade. The award has attracted interest from premium coffee buyers in Europe and Asia, promising to open lucrative new export markets. The cooperative, comprising 200 smallholder farmers, has invested in sustainable farming practices and processing equipment, demonstrating how collective action and quality focus can compete globally."
+            },
+            {
+                id: 6,
+                title: "Cultural Heritage: New Museum Celebrates Zimbabwe's History",
+                category: "culture",
+                image: "https://images.unsplash.com/photo-1566127444275-f82b3a3e7b7e?w=400",
+                excerpt: "State-of-the-art facility features interactive exhibits showcasing centuries of national heritage.",
+                premium: false,
+                date: "2024-01-10",
+                author: "Chipo Mapondera",
+                content: "The newly opened National Heritage Museum in Harare represents a bold step forward in preserving and celebrating Zimbabwe's rich cultural history. The museum features cutting-edge interactive exhibits that bring centuries of history to life through augmented reality, multimedia presentations, and carefully curated artifacts. Visitors can explore everything from ancient archaeological findings to contemporary art, with special sections dedicated to the liberation struggle, traditional crafts, and the diverse cultures of Zimbabwe's many ethnic groups. Educational programs for schools ensure that younger generations connect with their heritage."
+            }
+        ];
+
+        // Sample podcasts data
+        const podcasts = [
+            {
+                id: 1,
+                title: "Development Dialogues: Zimbabwe's Digital Future",
+                series: "Development Dialogues",
+                duration: "24:35",
+                description: "Expert discussions on technology, entrepreneurship, and innovation driving Zimbabwe forward.",
+                date: "2024-01-15"
+            },
+            {
+                id: 2,
+                title: "Zim Voices: The Organic Farmer Feeding Communities",
+                series: "Zim Voices",
+                duration: "18:42",
+                description: "Meet Sarah Ncube, who transformed her small plot into a thriving organic farm.",
+                date: "2024-01-14"
+            },
+            {
+                id: 3,
+                title: "Daily News Brief: Infrastructure & Economy Update",
+                series: "Daily News Briefs",
+                duration: "12:15",
+                description: "Your daily summary of Zimbabwe's most important news stories.",
+                date: "2024-01-14"
+            },
+            {
+                id: 4,
+                title: "Development Dialogues: Healthcare Innovation",
+                series: "Development Dialogues",
+                duration: "28:50",
+                description: "How telemedicine is transforming healthcare access in rural Zimbabwe.",
+                date: "2024-01-13"
+            },
+            {
+                id: 5,
+                title: "Zim Voices: The Teacher Changing Lives Through Tech",
+                series: "Zim Voices",
+                duration: "21:30",
+                description: "A rural teacher brings coding classes to students using solar-powered laptops.",
+                date: "2024-01-12"
+            },
+            {
+                id: 6,
+                title: "Daily News Brief: Culture & Arts Spotlight",
+                series: "Daily News Briefs",
+                duration: "10:45",
+                description: "Today's highlights from Zimbabwe's vibrant cultural scene.",
+                date: "2024-01-12"
+            }
+        ];
+
+        // Sample scheduled posts
+        const scheduledPosts = [
+            {
+                id: 1,
+                platform: "twitter",
+                content: "🚀 Zimbabwe's tech sector is booming! New report shows 45% growth in employment. Read our full analysis on the digital economy transformation. #ZimTech #Innovation",
+                scheduledFor: "2024-01-16 10:00",
+                status: "scheduled"
+            },
+            {
+                id: 2,
+                platform: "facebook",
+                content: "Meet Kudzai Makoni, the 22-year-old entrepreneur revolutionizing sustainable fashion by blending traditional Zimbabwean techniques with eco-friendly practices. Her brand 'Roots & Wings' is making waves internationally! 🌍👗 #ZimFashion #Sustainability",
+                scheduledFor: "2024-01-16 14:30",
+                status: "scheduled"
+            },
+            {
+                id: 3,
+                platform: "instagram",
+                content: "☕ BREAKING: Zimbabwe coffee wins GOLD at International Coffee Excellence Awards! Our Honde Valley growers are putting Zimbabwe on the global specialty coffee map. Story link in bio. #ZimCoffee #Excellence",
+                scheduledFor: "2024-01-16 18:00",
+                status: "scheduled"
+            }
+        ];
+
+        // Populate articles
+        function renderArticles(filter = 'all') {
+            const grid = document.getElementById('articlesGrid');
+            const filtered = filter === 'all' ? articles : articles.filter(a => a.category === filter);
+            
+            grid.innerHTML = filtered.map(article => `
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden card-hover cursor-pointer" onclick="openArticle(${article.id})">
+                    <div class="relative">
+                        <img src="${article.image}" alt="${article.title}" class="w-full article-image">
+                        ${article.premium ? '<span class="absolute top-3 right-3 premium-badge text-white text-xs font-bold px-3 py-1 rounded-full">PREMIUM</span>' : ''}
+                        <span class="absolute top-3 left-3 bg-zim-blue text-white text-xs font-bold px-3 py-1 rounded-full uppercase">${article.category}</span>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="text-xl font-bold mb-2 line-clamp-2">${article.title}</h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-2">${article.excerpt}</p>
+                        <div class="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400">
+                            <span><i class="fas fa-user mr-1"></i>${article.author}</span>
+                            <span><i class="fas fa-calendar mr-1"></i>${article.date}</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Filter articles
+        function filterArticles(category) {
+            renderArticles(category);
+            
+            // Update button styles
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('bg-zim-blue', 'text-white');
+                btn.classList.add('bg-gray-200', 'dark:bg-gray-700', 'text-gray-700', 'dark:text-gray-300');
+            });
+            event.target.classList.remove('bg-gray-200', 'dark:bg-gray-700', 'text-gray-700', 'dark:text-gray-300');
+            event.target.classList.add('bg-zim-blue', 'text-white');
+        }
+
+        // Open article modal
+        function openArticle(id) {
+            const article = articles.find(a => a.id === id);
+            if (!article) return;
+
+            if (article.premium) {
+                showPremiumModal();
+                return;
+            }
+
+            document.getElementById('modalTitle').textContent = article.title;
+            document.getElementById('modalContent').innerHTML = `
+                <div class="mb-6">
+                    <img src="${article.image}" alt="${article.title}" class="w-full rounded-lg mb-4">
+                    <div class="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400 mb-4">
+                        <span><i class="fas fa-user mr-1"></i>${article.author}</span>
+                        <span><i class="fas fa-calendar mr-1"></i>${article.date}</span>
+                        <span class="uppercase font-semibold text-zim-blue dark:text-zim-gold">${article.category}</span>
+                    </div>
+                </div>
+                <div class="prose dark:prose-invert max-w-none">
+                    <p class="text-lg leading-relaxed">${article.content}</p>
+                </div>
+                <div class="mt-8 pt-6 border-t dark:border-gray-700">
+                    <h4 class="font-bold mb-3">Share this article</h4>
+                    <div class="flex gap-3">
+                        <button class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all">
+                            <i class="fab fa-twitter mr-2"></i>Twitter
+                        </button>
+                        <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all">
+                            <i class="fab fa-facebook mr-2"></i>Facebook
+                        </button>
+                        <button class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-all">
+                            <i class="fab fa-whatsapp mr-2"></i>WhatsApp
+                        </button>
+                    </div>
+                </div>
+            `;
+            document.getElementById('articleModal').classList.remove('hidden');
+        }
+
+        function closeArticle() {
+            document.getElementById('articleModal').classList.add('hidden');
+        }
+
+        function showPremiumModal() {
+            const modal = document.createElement('div');
+            modal.className = 'fixed inset-0 bg-black bg-opacity-75 z-50 flex items-center justify-center p-4';
+            modal.innerHTML = `
+                <div class="bg-white dark:bg-gray-800 p-8 rounded-xl max-w-md w-full text-center">
+                    <div class="w-16 h-16 premium-badge rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-crown text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-zim-blue dark:text-zim-gold">Premium Content</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-6">Subscribe to access exclusive in-depth articles and analysis from our expert journalists.</p>
+                    <div class="flex gap-3">
+                        <button onclick="this.closest('.fixed').remove()" class="flex-1 px-6 py-3 bg-zim-gold hover:bg-yellow-600 text-gray-900 font-semibold rounded-lg transition-all">
+                            Subscribe Now
+                        </button>
+                        <button onclick="this.closest('.fixed').remove()" class="px-6 py-3 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 font-semibold rounded-lg transition-all">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+
+        // Populate podcasts
+        function renderPodcasts() {
+            const grid = document.getElementById('podcastsGrid');
+            grid.innerHTML = podcasts.map(podcast => `
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 card-hover cursor-pointer" onclick="playPodcast(${podcast.id})">
+                    <div class="w-full h-40 bg-gradient-to-br from-zim-blue to-zim-green rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-podcast text-white text-5xl"></i>
+                    </div>
+                    <span class="inline-block px-2 py-1 bg-zim-gold bg-opacity-20 text-zim-gold text-xs font-semibold rounded mb-2">${podcast.series}</span>
+                    <h3 class="text-lg font-bold mb-2 line-clamp-2">${podcast.title}</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-2">${podcast.description}</p>
+                    <div class="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400">
+                        <span><i class="fas fa-clock mr-1"></i>${podcast.duration}</span>
+                        <span><i class="fas fa-calendar mr-1"></i>${podcast.date}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Podcast player functionality
+        let isPlaying = false;
+        let currentProgress = 0;
+
+        function playPodcast(id) {
+            const podcast = podcasts.find(p => p.id === id);
+            if (!podcast) return;
+
+            document.getElementById('currentPodcastTitle').textContent = podcast.title;
+            document.getElementById('currentPodcastDescription').textContent = podcast.description;
+            document.getElementById('duration').textContent = podcast.duration;
+            
+            // Scroll to player
+            document.getElementById('podcasts').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        document.getElementById('playPauseBtn').addEventListener('click', function() {
+            isPlaying = !isPlaying;
+            const icon = this.querySelector('i');
+            const wave = document.getElementById('audioWave');
+            
+            if (isPlaying) {
+                icon.classList.remove('fa-play');
+                icon.classList.add('fa-pause');
+                wave.classList.remove('hidden');
+                wave.classList.add('flex');
+                simulatePlayback();
+            } else {
+                icon.classList.remove('fa-pause');
+                icon.classList.add('fa-play');
+                wave.classList.add('hidden');
+                wave.classList.remove('flex');
+            }
+        });
+
+        function simulatePlayback() {
+            if (!isPlaying) return;
+            
+            currentProgress += 0.5;
+            if (currentProgress > 100) {
+                currentProgress = 0;
+                isPlaying = false;
+                document.getElementById('playPauseBtn').querySelector('i').classList.remove('fa-pause');
+                document.getElementById('playPauseBtn').querySelector('i').classList.add('fa-play');
+                document.getElementById('audioWave').classList.add('hidden');
+                return;
+            }
+            
+            document.getElementById('progressBar').style.width = currentProgress + '%';
+            const currentSeconds = Math.floor((currentProgress / 100) * (24 * 60 + 35));
+            const minutes = Math.floor(currentSeconds / 60);
+            const seconds = currentSeconds % 60;
+            document.getElementById('currentTime').textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+            
+            setTimeout(simulatePlayback, 500);
+        }
+
+        // Populate scheduled posts
+        function renderScheduledPosts() {
+            const container = document.getElementById('scheduledPosts');
+            container.innerHTML = scheduledPosts.map(post => {
+                const platformIcons = {
+                    twitter: 'fa-twitter',
+                    facebook: 'fa-facebook',
+                    instagram: 'fa-instagram'
+                };
+                const platformColors = {
+                    twitter: 'text-blue-500',
+                    facebook: 'text-blue-600',
+                    instagram: 'text-pink-500'
+                };
+                return `
+                    <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow social-card">
+                        <div class="flex items-start justify-between mb-3">
+                            <div class="flex items-center gap-2">
+                                <i class="fab ${platformIcons[post.platform]} ${platformColors[post.platform]} text-xl"></i>
+                                <span class="font-semibold capitalize">${post.platform}</span>
+                            </div>
+                            <span class="px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 text-xs font-semibold rounded">${post.status}</span>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300 mb-3 text-sm">${post.content}</p>
+                        <div class="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400">
+                            <span><i class="fas fa-clock mr-1"></i>${post.scheduledFor}</span>
+                            <div class="flex gap-2">
+                                <button class="px-3 py-1 text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900 rounded transition-all">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="px-3 py-1 text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900 rounded transition-all">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Post creator functionality
+        let selectedPlatform = 'twitter';
+
+        function showPostCreator() {
+            document.getElementById('postCreatorModal').classList.remove('hidden');
+        }
+
+        function closePostCreator() {
+            document.getElementById('postCreatorModal').classList.add('hidden');
+            document.getElementById('postContent').value = '';
+            document.getElementById('scheduleTime').value = '';
+        }
+
+        document.querySelectorAll('.platform-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                selectedPlatform = this.dataset.platform;
+                document.querySelectorAll('.platform-btn').forEach(b => {
+                    b.classList.remove('bg-blue-500', 'text-white');
+                    b.classList.add('bg-gray-200', 'dark:bg-gray-700', 'text-gray-700', 'dark:text-gray-300');
+                });
+                this.classList.remove('bg-gray-200', 'dark:bg-gray-700', 'text-gray-700', 'dark:text-gray-300');
+                this.classList.add('bg-blue-500', 'text-white');
+            });
+        });
+
+        document.getElementById('postContent').addEventListener('input', function() {
+            document.getElementById('charCount').textContent = this.value.length;
+        });
+
+        function schedulePost() {
+            const content = document.getElementById('postContent').value;
+            const scheduleTime = document.getElementById('scheduleTime').value;
+            
+            if (!content.trim()) {
+                showNotification('Please enter post content', 'error');
+                return;
+            }
+            
+            if (!scheduleTime) {
+                showNotification('Please select a schedule time', 'error');
+                return;
+            }
+            
+            const newPost = {
+                id: scheduledPosts.length + 1,
+                platform: selectedPlatform,
+                content: content,
+                scheduledFor: new Date(scheduleTime).toLocaleString(),
+                status: 'scheduled'
+            };
+            
+            scheduledPosts.push(newPost);
+            renderScheduledPosts();
+            closePostCreator();
+            showNotification('Post scheduled successfully!', 'success');
+        }
+
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            const bgColor = type === 'success' ? 'bg-green-500' : 'bg-red-500';
+            notification.className = `fixed top-20 right-4 ${bgColor} text-white px-6 py-3 rounded-lg shadow-lg z-50 animate-slide-in`;
+            notification.innerHTML = `
+                <div class="flex items-center gap-2">
+                    <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>
+                    <span>${message}</span>
+                </div>
+            `;
+            document.body.appendChild(notification);
+            setTimeout(() => notification.remove(), 3000);
+        }
+
+        // Initialize all content
+        renderArticles();
+        renderPodcasts();
+        renderScheduledPosts();
+    </script>
+</body>
+</html>
